@@ -17,7 +17,7 @@ Es una herramienta para definir y ejecutar aplicaciones Docker de múltiples con
 
     version: "3.7"
     services:
-
+ 
       flask:
         build: ./app
         container_name: flask
