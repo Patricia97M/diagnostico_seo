@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, 
+                      width=device-width, initial-scale=1.0, 
+                      minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, 
+                      user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="description" content="" />
+    <meta name="author" content="Patricia Monares" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Resultados - Diagnóstico SEO</title>
+    <script>
+      $(document).ready(function () {       
+        var bien = $("img[class*='bien']").length;
+        var mal = $("img[class*='mal']").length;
+
+        var total = bien + mal;
+        var porcentajeBien = bien / total * 100;
+        var porcentajeMal = mal / total * 100;
+
+        $("span[class*='contadorBien']").text(Math.round(porcentajeBien)+"%");
+      
+        $("span[class*='contadorMal']").text(Math.round(porcentajeMal)+"%");
+
+        $("p[class*='totalB']").text(bien+" puntos SEO");
+  
+        $("p[class*='totalM']").text(mal+" puntos SEO");
+
+      });
+    </script>
+</head>
+<body>
+    <div class="main_page_wrapper" id="main_page_wrapper">
+      <div id="editable_page">
+        <header id="header_page" style="height: 300px; text-align: center; " >
+          <div class="wptg-edit-hook wptg-image-background" align="center" style="background-image: url('/static/img/background2.jpg'); ">
+              <div>
+                  <h1 class="header-search-title" style="color: #ffff;">
+                      Resultados del Diagnóstico SEO para Sitios Web
+                  </h1>
+              </div>
+          </div>
+        </header>
+        <div id="main_page">
+          <main id="content" class="row" >
+            <div id="wptg-main-content" class=" col-sm-11 borde" style="background: #ffff; ">
+              <section class="wptg-list wptg-parent wptg-edit-hook" id="section-latest-posts-list">
+                <div class="col-sm-12">
+                  <div class="container" id="latest-posts-list">
+                    <br>
+                    <div id="estadistica ">
+                      <b><h2 class="header-search-desc wptg-link-post" style="font-size: 1.5em;">
+                        Estadísticas del sitio
+                      </h2></b>
+                      <br>
+                      <div class="main-listp wptg-post-ind">
+                        
+                        <div class="container listp-article col-md-6" align="center" >
+                          <div >
+                            <h2 class="wptg-link-post">
+                              {{ url }}
+                            </h2>
+                            <br>
+                            <br>
+                            <div class="row" >
+                              <div class="col" align="center">
+                                <img style="width:45%;" src="/static/img/post_0.jpg" />
+      
+                                  <h3>Fecha de informe: </h3>    
+                                  <p>{{ fecha }}</p>   
+      
+                              </div>
+                              <div class="col" id="bien" >
+                                <b><h3>Bien</h3></b>
+                                <p class="totalB"></p>
+                                <br>
+                                <span class="contadorBien"></span>
+                              </div>
+                              <div class="col" id="mal">
+                                <b><h3>Mal</h3></b>
+                                <p class="totalM"></p>
+                                <br>
+                                <span class="contadorMal"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                      </div>    
+                    </div>
+                    <hr style="margin-top: 2rem; margin-bottom: 2rem;" />
+                    <b><h2 class="header-search-desc" style="font-size: 1.5em;">
+                    Puntos SEO diagnosticados
+                    </h2></b>
+                    <br>
+                    {% for punto,elemento in titulo.items() %}
+                    <div class="listp-container">                  
+                      <h2 class="listp-title">  
+                      {% if elemento[0]==1%}
+                      <img src="https://img.icons8.com/color/48/000000/ok--v1.png"class="bien" id="img" />
+                      {% elif elemento[0] == 2 %}
+                      <img src="https://img.icons8.com/color/48/000000/cancel--v1.png" class="mal" id="img"/>
+                      {%endif%}    
+                      {{ punto }}    
+                      </h2>
+                      <div class="listp-content" class="col-8" style="word-wrap: break-word;"> 
+                        <p>
+                        {{ elemento[1] }} <br>
+                        </p>
+                        <br>
+                        {% if elemento[2]%}
+                        <div class="btn-resp_consejo" id="{{elemento[3]}}" >
+                          <p>{{elemento[2]}}</p>
+                        </div>
+                        {%endif%}  
+                      </div>
+                    </div>
+                    <hr style="margin-top: 2rem; margin-bottom: 2rem;" />
+                    {% endfor %}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </main>
+          <div class="row">
+            <div id="action_content" class="col-12 col-sm-12"></div>
+          </div>
+        </div>
+    </div>
+    <footer id="footer_page">
+        <div id="simple-footer" class="wptg-parent wptg-edit-hook">
+          <div class="simplef-line">
+          </div>
+          <div class="simplef-main-container">
+            <div class="simplef-container">
+              <div class="simplef-containerp">
+                  Theme Footer | Copyright © 0000
+              </div>
+              <div class="simplef-right-menu">
+                <ul class="simplef-menu-items simplef-menu-social ">
+                  <li><a class="wptg-facebook fa fa-facebook" href="#"></a></li>
+                  <li><a class="wptg-instagram fa fa-instagram" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="simplef-social"></div>
+          </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

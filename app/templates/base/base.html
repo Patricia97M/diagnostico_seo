@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, 
+                      width=device-width, initial-scale=1.0, 
+                      minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, 
+                      user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="description" content="" />
+    <meta name="author" content="Patricia Monares" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }} " />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }} "/> 
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/funciones.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  
+    <script>
+        
+        
+    </script>   
+    <title>{% block title %}
+        {% endblock %}</title>
+</head>
+
+<body>
+    <div class="main_page_wrapper" id="main_page_wrapper">
+        <div id="editable_page">
+            <div id="navbar_container" class="wptg-fixed-nav">
+             <div id="overlay-section" onclick="off()">
+             </div>
+             <nav class="navbar navbar-expand-lg wptg-edit-hook wptg-navbar" id="navbar-ablog">
+              <a class="navbar-brand wptg-title" href="/">
+               LOGOTYPE
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <i class="fa fa-bars"></i>
+              </button>
+              <div class="collapse navbar-collapse navbar-collapse" id="navbarNavDropdown">
+               <ul class="navbar-nav">
+                <li class="nav-item active">
+                 <a class="nav-link" href="/">
+                 <i class="fa fa-home"></i> Inicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">
+                    <span  class = "glyphicon glyphicon-expand"></span> Tutorial</a>
+                   </li>
+               </ul>
+               </ul>
+              </div>
+             </nav>
+            </div>
+                {% block content%}
+                {% endblock %}
+            </div>
+        <footer id="footer_page">
+            <div id="simple-footer" class="wptg-parent wptg-edit-hook">
+                <div class="simplef-line"></div>
+                <div class="simplef-main-container">
+                    <div class="simplef-container">
+                    <div class="simplef-containerp">
+                        Theme Footer | Copyright © 0000
+                    </div>
+                        <div class="simplef-right-menu">
+                            <ul class="simplef-menu-items simplef-menu-social ">
+                                <li><a class="wptg-facebook fa fa-facebook" href="#"></a></li>
+                                <li><a class="wptg-instagram fa fa-instagram" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="simplef-social"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

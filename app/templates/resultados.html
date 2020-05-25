@@ -1,0 +1,127 @@
+
+
+{% extends 'base/base.html'%}
+
+{% block title %}
+
+Resultados- Diagnóstico SEO
+
+{% endblock %}
+
+{% block content%}
+    <header id="header_page" style="height: 300px;">
+        <div class="wptg-edit-hook wptg-image-background" id="header-search" style="background-image: url({{ url_for('static', filename='img/background2.jpg') }}); ">
+            <div class="header-search-content">
+                <h1 class="header-search-title wptg-title">
+                    Resultados del Diagnóstico SEO para Sitios Web
+                </h1>
+                <br>
+            </div>
+        </div>
+    </header>
+    <div id="main_page">
+        <main id="content" class="row" >
+            <div id="wptg-main-content" class=" col-sm-11 borde" style="background: #ffff; ">
+                <section class="wptg-list wptg-parent wptg-edit-hook" id="section-latest-posts-list">
+                    <div class="col-sm-12">
+                        <div class="container" id="latest-posts-list">
+                            <br>
+                            <div id="estadistica ">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <b><h2 class="header-search-desc wptg-link-post" style="font-size: 1.5em;">
+                                            Estadísticas del sitio
+                                        </h2></b>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right;">
+                                        <a href="/" class="btn btn-xs btn-primary">Volver</a>    
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="main-listp wptg-post-ind row">
+                                    <div class="listp-image col-md-4 col-sm-12" align="center">
+                                        <img class="img-fluid wptg-post-img" src="{{ url_for('static', filename='img/post_0.jpg') }}" data-image="post"/>
+                                        <h3>Fecha: {{ fecha }}</h3>
+                                        
+                                    </div>
+                                    <div class="container listp-article col-md-6" align="center" >
+                                        <div >
+                                            <h2 class="wptg-link-post">
+                                                {{ url }}
+                                            </h2>
+                                            <br>
+                                            <div class="row" >
+                                                <div class="col" id="bien" >
+                                                   <b><h3>Bien</h3></b>
+                                                   <p class="totalB"></p>
+                                                   <br>
+                                                   <span class="contadorBien"></span>
+                                                    
+                                                </div>
+                                                <div class="col" id="mal">
+                                                    <b><h3>Mal</h3></b>
+                                                    <p class="totalM"></p>
+                                                    <br>
+                                                    <span class="contadorMal"></span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <form method="post" action="/informe">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="descargar" value="{{titulo}}">
+                                        <input type="hidden" name="fecha" value="{{fecha}}">
+                                        <input type="hidden" name="url" value="{{url}}">
+                                        <button type="submit" name="btn-descarga">
+                                            <div class="box-img" align="center">
+                                                <img src="{{url_for('static', filename='img/descargar.png')}}">
+                                                <h3>
+                                                    Descargar PDF
+                                                </h3>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                                <hr style="margin-top: 2rem; margin-bottom: 2rem;" />
+                            </div>
+                            <b><h2 class="header-search-desc" style="font-size: 1.5em;">
+                            Puntos SEO diagnosticados
+                            </h2></b>
+                            <br>
+                            <div class="bloque-puntos"></div>
+                            {% for punto,elemento in titulo.items() %}
+                                <div class="listp-container">                  
+                                    <h2 class="listp-title">  
+                                    {% if elemento[0]==1%}
+                                        <img src="https://img.icons8.com/color/48/000000/ok--v1.png"class="bien" id="img" />
+                                    {% elif elemento[0] == 2 %}
+                                        <img src="https://img.icons8.com/color/48/000000/cancel--v1.png" class="mal" id="img"/>
+                                    {%endif%}    
+                                    {{ punto }}    
+                                    </h2>
+                                    <div class="listp-content" class="col-8" style="word-wrap: break-word;" > 
+                                        <p>
+                                            {{ elemento[1] }} <br>
+                                        </p>
+					                {% if elemento[2] %}
+                                        <div><a href="#{{elemento[3]}}" class="btn btn-outline-info btn-sm btn-consejo" >Ver Consejos</a></div>
+                                        <br>
+                                        <div class="btn-resp_consejo" class="oculto" id="{{elemento[3]}}" style="display: none;" >{{elemento[2]}}</div>
+                                    {% endif %}
+					</div>
+                                </div>
+                                <hr style="margin-top: 2rem; margin-bottom: 2rem;" />
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <div class="row">
+            <div id="action_content" class="col-12 col-sm-12"></div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

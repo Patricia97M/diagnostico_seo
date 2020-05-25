@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  
+  flask:
+    build: ./app
+    container_name: flask
+    restart: always
+    environment:
+      - APP_NAME=MyFlaskApp
+    command :  gunicorn --bind 0.0.0.0:5000 --timeout 1000 app:app daemon
+    expose:
+      - 5000
+    links:
+      - db
+    
+  db:
+    #build: ./mysql
+    image: mysql:5.7
+    environment: 
+      MYSQL_ROOT_PASSWORD: diagseo2020bd
+      MYSQL_DATABASE: diagbd
+    ports: 
+      - "32000:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+  

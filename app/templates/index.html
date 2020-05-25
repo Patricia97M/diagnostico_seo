@@ -1,0 +1,212 @@
+{% extends 'base/base.html'%}
+
+{% block title %}
+Diagnóstico SEO
+{% endblock %}
+    
+{% block content%}
+
+<header id="header_page">
+    <div class="wptg-edit-hook wptg-image-background" id="header-search" style="background-image: url({{ url_for('static', filename='img/background.jpg') }}); ">
+     <div class="header-search-content ">
+      <h1 class="header-search-title wptg-title">
+       Diagnóstico SEO para Sitios Web
+      </h1>
+      <h2 class="header-search-desc">
+       Un análisis perfecto para ti, gratuito y con con la opcion de seleccionar que los puntos SEO que necesites diagnosticar
+      </h2>
+      <div class="header-search-form ">
+       <form class="search-form form-horizontal" id="form" method="post">
+         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+         <div class="form-group">
+         <div class="form-group ">
+           <input type="url" class="form-control" placeholder="Ingrese la URL" name="url" id="url" required="true">
+           <br>
+           <button class="btn btn-primary btn-sm analizar" id="btnCompleto" name="btnCompleto" disabled data-toggle="modal" data-target="#cargando">Completo</button> 
+           <button type="button" class="btn btn-info btn-sm analizar" data-toggle="modal" data-target="#exampleModal" id="modal" disabled>Personalizado</button>
+           </a> 
+         </div>
+        </div>
+         {% if formulario.url.errors %}
+           <div class="alert alert-danger">
+            {% for error in formulario.url.errors %}
+               <span class="help-block" >{{ error }}</span>
+            {% endfor%}
+            </div>
+         {% endif%}
+         {% if formulario.punto.errors %}
+           <div class="alert alert-danger">
+            {% for error in formulario.punto.errors %}
+               <span class="help-block" >{{ error }}</span>
+            {% endfor%}
+            </div>
+         {% endif%}
+       </form>
+      </div>
+     </div>
+    </div>
+   </header>
+   <div id="main_page" style="background: #f9f1f0;" >
+    <main id="content" class="row" style="background: #f9f1f0;" >
+     <div id="wptg-main-content" class=" col-sm-10 borde" style="background: #ffff; ">
+      <section class="wptg-list wptg-parent wptg-edit-hook" id="section-latest-posts-list">
+       <b><div align = "center">
+         <br>
+         <u><h2 class="header-search-desc" style="font-size: 1.5em;">
+                "Puntos SEO para el diagnóstico"
+         </h2></u>
+         <br>
+       </div></b>
+       <div class="tamano col-sm-12">
+         <div class="container" id="latest-posts-list">
+          {% for item in titulos %}
+            <div class="listp-container">
+              <h2 class="listp-title">
+                {{item[0]}}.- {{item[1]}}:
+              </h2>
+             <div class="listp-content">
+              <p>
+                {{item[2]}}
+              </p>
+             </div>
+          </div>
+          <hr style="margin-top: 2rem; margin-bottom: 2rem;" />
+          {%endfor%}
+          
+          </div>
+        </div>
+       </div>
+      </section>
+     </div>
+    </main>
+    <div class="row">
+     <div id="action_content" class="col-12 col-sm-12"></div>
+    </div>
+    <div class="row" style="background: #c4cbec; ">
+     <div id="main_content" class="col-12 col-sm-12 wptg-container">
+      <section class="main-section-features wptg-parent wptg-edit-hook" id="main-section-lux">
+       <div class="container-lux main-section-lux-container">
+        <div class="row main-section-lux-row">
+         <div class="col-xs-12 col-sm-6 wptg-category-ind">
+          <a href="#">
+           <div class="category-box">
+            <div class="box-img" align="center">
+              <img src="{{url_for('static', filename='img/opciones.png')}}">
+            </div>
+            <div class="box-text">
+             <h4 class="category-title wptg-category-title">
+              Opciones
+             </h4>
+             <p class="wptg-category-excerpt">
+              Esta herramienta te brinda la oportunidad de elegir entre dos tipos de analisis:
+              <br>
+              - Completo: Analiza tu sitio con respecto a todos los puntos SEO señalados
+              <br>
+              - Personalizado: Analiza tu sitio con respecto a los puntos SEO que tu prefieras de acuerdo a la lista dada</li>
+             </p>
+            </div>
+           </div>
+          </a>
+         </div>
+         <div class="col-xs-12 col-sm-6 wptg-category-ind">
+          <a href="#">
+           <div class="category-box">
+            <div class="box-img">
+              <img src="{{url_for('static', filename='img/consejo.png')}}">
+            </div>
+            <div class="box-text">
+             <h4 class="category-title wptg-category-title">
+              Consejos
+             </h4>
+             <p class="wptg-category-excerpt">
+              Te proporciona el modo de mejorar las falencias de tu sitio web, para que asi sepas como solucionar los items mal evaluados.
+             </p>
+            </div>
+           </div>
+          </a>
+         </div>
+         <div class="col-xs-12 col-sm-6 wptg-category-ind">
+          <a href="#">
+           <div class="category-box">
+            <div class="box-img">
+              <img src="{{url_for('static', filename='img/informe.png')}}">
+            </div>
+            <div class="box-text">
+             <h4 class="category-title wptg-category-title">
+              Informe
+             </h4>
+             <p class="wptg-category-excerpt">
+              Te da la oportunidad de descargar en tu equipo el diagnostico resultante de tu sitio web.
+             </p>
+            </div>
+           </div>
+          </a>
+         </div>
+         <div class="col-xs-12 col-sm-6 wptg-category-ind">
+           <div class="category-box">
+            <div class="box-img">
+              <img src="{{url_for('static', filename='img/informe_comp.png')}}">
+            </div>
+            <div class="box-text">
+             <h4 class="category-title wptg-category-title">
+              Analiza tu sitio
+             </h4>
+             <p class="wptg-category-excerpt">
+              Mejora tu posicionamiento web y recibe mas visitas en tu web 
+             </p>
+            </div>
+           </div>
+         </div>
+        </div>
+       </div>
+      </section>
+     </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Seleccionar Puntos SEO</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="search-form form-horizontal" id="form" method="POST" >  
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />   
+        <input type="hidden" name="url" value="" id="url2" />
+        <div class="modal-body">
+          {% for item in titulos %}
+              <input type="checkbox" name="punto" id="punto" value="{{item[1]}}"> {{item[1]}} <br>
+            {% endfor %}  
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-sm analizar" id="btnPersonalizado" disabled="true" data-toggle="modal" data-target="#cargando" >Analizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="cargando" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body"  style="text-align: center;">
+	<br> 
+       <img style="width:30%;" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif">
+      	<br>
+	<br>
+	<h2>Estamos analizando tu sitio, espere...</h2>
+	<br>
+	<br>
+     </div>
+       
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
