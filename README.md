@@ -10,8 +10,8 @@ Debe tener instalado docker y docker-compose
 
 Clonamos el siguiente repositorio github en el equipo e ingresamos a la carpeta:
 
-	  $ git clone https://github.com/Patricia97M/diagnostico_seo.git 
-    $ cd diagnostico_seo
+	$ git clone https://github.com/Patricia97M/diagnostico_seo.git 
+    	$ cd diagnostico_seo
   
 Es una herramienta para definir y ejecutar aplicaciones Docker de múltiples contenedores. Utiliza un archivo Compose para configurar los servicios de su aplicación, en este caso configuraremos el contenedor flask (/app/Dockerfile) de contiene la aplicacion , Nginx (/nginx/Dockerfile) como servidor web para esta herramienta y Mysql como base de datos inicializando la base de datos correspondiente en el siqgiente archivo `docker-compose.yml` 
 
@@ -65,9 +65,9 @@ Comprobamos que los contenedores estan corriendo
          
 La configuración de la conexión a la base de datos de nuestra aplicación, esta en el fichero `app.py` aqui se indican los parámetros de conexión y la contraseña del root de mysql que vamos a mandar cuando creemos el contenedor, de la siguiente manera:
 
-    app.config['MYSQL_HOST'] = 'db'			              # IP del servidor o nombre del servicio
+    app.config['MYSQL_HOST'] = 'db'			            # IP del servidor o nombre del servicio
     app.config['MYSQL_USER'] = 'root'			            # Nombre de usuario
-    app.config['MYSQL_PASSWORD'] = 'diagseo2020bd'		# Contraseña
+    app.config['MYSQL_PASSWORD'] = 'diagseo2020bd'		    # Contraseña
     app.config['MYSQL_DB'] = 'diagbd'			            # Nombre de la base de datos
 
 
