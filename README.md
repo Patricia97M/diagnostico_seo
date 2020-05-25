@@ -10,7 +10,7 @@ Debe tener instalado docker y docker-compose
 
 Clonamos el siguiente repositorio github en el equipo e ingresamos a la carpeta:
 
-	$ git clone https://github.com/Patricia97M/diagnostico_seo.git 
+		$ git clone https://github.com/Patricia97M/diagnostico_seo.git 
     	$ cd diagnostico_seo
   
 Es una herramienta para definir y ejecutar aplicaciones Docker de múltiples contenedores. Utiliza un archivo Compose para configurar los servicios de su aplicación, en este caso configuraremos el contenedor flask (/app/Dockerfile) de contiene la aplicacion , Nginx (/nginx/Dockerfile) como servidor web para esta herramienta y Mysql como base de datos inicializando la base de datos correspondiente en el siqgiente archivo `docker-compose.yml` 
