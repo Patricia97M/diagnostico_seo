@@ -1,13 +1,16 @@
 # Use the Python3.7.2 image
-FROM python:3.6.10-stretch
-RUN apt-get update && apt-get install -y wget nano curl build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
+FROM python:3.7-stretch
+RUN apt-get update && apt-get install -y libjpeg62-turbo libxext6 libxext6 fontconfig wget nano xfonts-75dpi xfonts-base build-essential chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
 
 # Set the working directory to /app
-WORKDIR /app
+
 
 # Copy the current directory contents into the container at /app 
 ADD . /app
 # Install the dependencies
+WORKDIR /app
+RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb
 
 RUN pip3 install --upgrade pip
 # Install the dependencies
@@ -17,10 +20,5 @@ RUN tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
 RUN mv phantomjs-2.1.1-linux-x86_64 /usr/local/share
 RUN ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
 RUN rm phantomjs-2.1.1-linux-x86_64.tar.bz2
-RUN curl -L#o wk.tar.xz https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-    && tar xf wk.tar.xz \
-    && cp wkhtmltox/bin/wkhtmltopdf /usr/bin \
-    && cp wkhtmltox/bin/wkhtmltoimage /usr/bin \
-    && rm wk.tar.xz \
-    && rm -r wkhtmltox
+#RUN apt -f install
 # run the command to start uWSGI
