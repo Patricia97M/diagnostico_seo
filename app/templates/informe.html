@@ -13,25 +13,19 @@
     <link rel="stylesheet" type="text/css" href="/app/static/css/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    
+
     <title>Resultados - Diagnóstico SEO</title>
     <script>
       $(document).ready(function () {       
         var bien = $("img[class*='bien']").length;
         var mal = $("img[class*='mal']").length;
-
         var total = bien + mal;
         var porcentajeBien = bien / total * 100;
         var porcentajeMal = mal / total * 100;
-
         $("span[class*='contadorBien']").text(Math.round(porcentajeBien)+"%");
-      
         $("span[class*='contadorMal']").text(Math.round(porcentajeMal)+"%");
-
         $("p[class*='totalB']").text(bien+" puntos SEO");
-  
         $("p[class*='totalM']").text(mal+" puntos SEO");
-
       });
     </script>
 </head>
@@ -60,7 +54,6 @@
                       </h2></b>
                       <br>
                       <div class="main-listp wptg-post-ind">
-                        
                         <div class="container listp-article col-md-6" align="center" >
                           <div >
                             <h2 class="wptg-link-post">
@@ -71,10 +64,8 @@
                             <div class="row" >
                               <div class="col" align="center">
                                 <img style="width:45%;" src="/app/static/img/post_0.jpg" />
-      
-                                  <h3>Fecha de informe: </h3>    
+                                 <h3>Fecha de informe: </h3>    
                                   <p>{{ fecha }}</p>   
-      
                               </div>
                               <div class="col" id="bien" >
                                 <b><h3>Bien</h3></b>
@@ -106,7 +97,7 @@
                       {% elif elemento[0] == 2 %}
                       <img src="https://img.icons8.com/color/48/000000/cancel--v1.png" class="mal" id="img"/>
                       {%endif%}    
-                      {{ punto }}    
+                      {{ punto }}   
                       </h2>
                       <div class="listp-content" class="col-8" style="word-wrap: break-word;"> 
                         <p>
@@ -140,12 +131,6 @@
             <div class="simplef-container">
               <div class="simplef-containerp">
                   Theme Footer | Copyright © 0000
-              </div>
-              <div class="simplef-right-menu">
-                <ul class="simplef-menu-items simplef-menu-social ">
-                  <li><a class="wptg-facebook fa fa-facebook" href="#"></a></li>
-                  <li><a class="wptg-instagram fa fa-instagram" href="#"></a></li>
-                </ul>
               </div>
             </div>
             <div class="simplef-social"></div>
